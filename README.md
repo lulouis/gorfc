@@ -167,7 +167,9 @@ func main() {
 ## To Do
 
 * Improve the documentation
-* Fix Windows compiler flags
+
+## Authoer Commited
+* Fixed Windows compiler flags
 
 ## References
 
