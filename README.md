@@ -168,7 +168,7 @@ func main() {
 
 * Improve the documentation
 
-## Authoer Commited
+## Author Commited
 * Fixed Windows compiler flags
 
 ## References
