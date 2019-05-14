@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sap/gorfc/gorfc"
+	"github.com/lulouis/gorfc/gorfc"
 )
 
 func abapSystem() gorfc.ConnectionParameter {
