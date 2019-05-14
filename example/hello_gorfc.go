@@ -12,7 +12,7 @@ func abapSystem() gorfc.ConnectionParameter {
 		Dest:   "I64",
 		Client: "800",
 		User:   "1008",
-		Passwd: "m4.com",
+		Passwd: "********",
 		Lang:   "EN",
 		Ashost: "192.168.2.43",
 		Sysnr:  "00",
