@@ -56,6 +56,11 @@ Set the environment user varialbes GOPATH and GOBIN, add the bin subdirectories 
 GOPATH = C:\workspace
 GOBIN = %GOPATH%\bin
 PATH = %GOROOT%\bin;%GOBIN%:%PATH%
+
+CGO_CXXFLAGS_ALLOW=".*" 
+CGO_LDFLAGS_ALLOW=".*" 
+CGO_CFLAGS_ALLOW=".*" 
+
 ```
 
 See also [GO on Windows Example](#ref4).
