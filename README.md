@@ -175,7 +175,7 @@ func main() {
 
 ## Author Commited
 * Fixed Windows compiler flags
-
+* Fixed MacOS>10.15 compiler flags
 ## References
 
 * <a name="ref1"></a>[GO Installation](https://golang.org/doc/install)

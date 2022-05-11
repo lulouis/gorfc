@@ -10,19 +10,24 @@ import (
 func abapSystem() gorfc.ConnectionParameter {
 	return gorfc.ConnectionParameter{
 		Dest:   "I64",
-		Client: "800",
+		Client: "310",
 		User:   "1008",
-		Passwd: "********",
+		Passwd: "m4.com",
 		Lang:   "EN",
-		Ashost: "192.168.2.43",
+		Ashost: "192.168.2.26",
 		Sysnr:  "00",
 	}
 }
 
 func main() {
-	c, _ := gorfc.ConnectionFromParams(abapSystem())
+	c, err := gorfc.ConnectionFromParams(abapSystem())
 	defer c.Close()
 	// var t *testing.T
+
+	if err != nil {
+		println(err.Error())
+		return
+	}
 
 	params := map[string]interface{}{
 		"IMPORTSTRUCT": map[string]interface{}{
@@ -36,15 +41,16 @@ func main() {
 			"RFCHEX3":  []byte{255, 254, 253},
 			"RFCTIME":  time.Now(),
 			"RFCDATE":  time.Now(),
-			"RFCDATA1": "Hellö SÄP",
+			"RFCDATA1": "测试结果：通过",
 			"RFCDATA2": "DATA222",
 		},
 	}
 	r, _ := c.Call("STFC_STRUCTURE", params)
-	fmt.Println(r)
+	echoStruct := r["ECHOSTRUCT"].(map[string]interface{})
+	fmt.Println(echoStruct["RFCDATA1"])
 	// assert.NotNil(t, r["ECHOSTRUCT"])
 	// importStruct := params["IMPORTSTRUCT"].(map[string]interface{})
-	// echoStruct := r["ECHOSTRUCT"].(map[string]interface{})
+
 	// assert.Equal(t, importStruct["RFCFLOAT"], echoStruct["RFCFLOAT"])
 	// assert.Equal(t, importStruct["RFCCHAR1"], echoStruct["RFCCHAR1"])
 	// assert.Equal(t, importStruct["RFCCHAR2"], echoStruct["RFCCHAR2"])

@@ -1,3 +1,4 @@
+//go:build (linux && cgo) || (amd64 && cgo)
 // +build linux,cgo amd64,cgo
 
 // gorfc wraps the SAP NetWeaver RFC library written in C.
@@ -16,8 +17,8 @@ package gorfc
 #cgo linux CFLAGS: -m64 -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long
 #cgo linux CFLAGS: -Wcast-align -pthread -pipe -Wno-unused-variable
 
-#cgo linux CFLAGS: -I/usr/local/sap/nwrfcsdk/include
-#cgo linux LDFLAGS: -L/usr/local/sap/nwrfcsdk/lib -lsapnwrfc -lsapucum
+#cgo linux CFLAGS: -I$SAPNWRFC_HOME/include
+#cgo linux LDFLAGS: -L$SAPNWRFC_HOME/lib -lsapnwrfc -lsapucum
 
 #cgo linux LDFLAGS: -O2 -minline-all-stringops -g -fno-strict-aliasing -fno-omit-frame-pointer
 #cgo linux LDFLAGS: -m64 -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long
@@ -35,6 +36,18 @@ package gorfc
 #cgo windows LDFLAGS: -O2 -minline-all-stringops -g -fno-strict-aliasing -fno-omit-frame-pointer
 #cgo windows LDFLAGS: -m64 -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long
 #cgo windows LDFLAGS: -Wcast-align
+
+// ~~~~ darwin ~~~~ //
+#cgo darwin CFLAGS: -Wall -O2 -Wno-uninitialized -Wcast-align
+#cgo darwin CFLAGS: -DSAP_UC_is_wchar -DSAPwithUNICODE -D__NO_MATH_INLINES -DSAPwithTHREADS -DSAPonDARW
+#cgo darwin CFLAGS: -fexceptions -funsigned-char -fno-strict-aliasing -fPIC -pthread -std=c17 -mmacosx-version-min=10.15
+#cgo darwin CFLAGS: -fno-omit-frame-pointer
+#cgo darwin CFLAGS: -I$SAPNWRFC_HOME/include
+#cgo darwin LDFLAGS: -L$SAPNWRFC_HOME/lib -lsapnwrfc -lsapucum
+#cgo darwin LDFLAGS: -Wl,-rpath,$SAPNWRFC_HOME/lib
+#cgo darwin LDFLAGS: -O2 -g -pthread
+#cgo darwin LDFLAGS: -stdlib=libc++
+#cgo darwin LDFLAGS: -mmacosx-version-min=10.15
 
 #include <sapnwrfc.h>
 
