@@ -1,9 +1,10 @@
-//go:build (linux && cgo) || (amd64 && cgo)
-// +build linux,cgo amd64,cgo
+//go:build (linux && cgo) || (amd64 && cgo) || (darwin && cgo)
+// +build linux,cgo amd64,cgo darwin,cgo
 
 // gorfc wraps the SAP NetWeaver RFC library written in C.
 // Its provides methods for maintaining a connection to an ABAP backend and calling remote enabled functions from Go.
 // The functions of the library take and return Go data types.
+// Package gorfc provides SAP NetWeawer RFC SDK client bindings for GO
 package gorfc
 
 /*
