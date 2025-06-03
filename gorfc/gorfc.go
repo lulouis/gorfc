@@ -48,7 +48,7 @@ package gorfc
 #cgo darwin LDFLAGS: -Wl,-rpath,$SAPNWRFC_HOME/lib
 #cgo darwin LDFLAGS: -O2 -g -pthread
 #cgo darwin LDFLAGS: -stdlib=libc++
-#cgo darwin LDFLAGS: -mmacosx-version-min=10.15
+#cgo darwin LDFLAGS: -mmacosx-version-min=12.0
 
 #include <sapnwrfc.h>
 
